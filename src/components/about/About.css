@@ -25,12 +25,6 @@
     transition: var(--transition);
 }
 
-.about__me-image img {
-    width: 100%;
-    height: 100%;
-    border-radius: 2rem;
-}
-
 .about__me-image:hover {
     transform: rotate(0deg);
 }
