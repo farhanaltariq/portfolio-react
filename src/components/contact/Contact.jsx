@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Contact.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsLinkedin } from "react-icons/bs";
 import { RiMessengerLine } from "react-icons/ri";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            process.env.REACT_APP_SERVICE_ID,
+            process.env.REACT_APP_TEMPLATE_ID,
+            form.current,
+            process.env.REACT_APP_PUBLIC_KEY
+        );
+
+        e.target.reset();
+    };
+
     return (
         <section id="contact">
             <h5>Get in touch</h5>
@@ -49,7 +65,7 @@ const Contact = () => {
                         </a>
                     </article>
                 </div>
-                <form action="">
+                <form ref={form} onSubmit={sendEmail}>
                     <input
                         type="text"
                         name="name"
